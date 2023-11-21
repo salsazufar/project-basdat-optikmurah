@@ -567,9 +567,10 @@
                 <Component class="javax.swing.JTable" name="tabelDetail">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="4">
+                      <Table columnCount="5" rowCount="4">
                         <Column editable="true" title="NO.TRANSAKSI" type="java.lang.String"/>
-                        <Column editable="true" title="ID BARANG" type="java.lang.String"/>
+                        <Column editable="true" title="ID LENSA" type="java.lang.String"/>
+                        <Column editable="true" title="ID FRAME" type="java.lang.String"/>
                         <Column editable="true" title="BANYAKNYA" type="java.lang.Integer"/>
                         <Column editable="true" title="JUMLAH HARGA" type="java.lang.Integer"/>
                       </Table>
@@ -941,10 +942,11 @@
                 <Component class="javax.swing.JTable" name="tabelFrame">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="3" rowCount="4">
+                      <Table columnCount="4" rowCount="4">
                         <Column editable="true" title="ID" type="java.lang.String"/>
                         <Column editable="true" title="MEREK" type="java.lang.String"/>
                         <Column editable="true" title="HARGA" type="java.lang.Integer"/>
+                        <Column editable="true" title="STOK" type="java.lang.Integer"/>
                       </Table>
                     </Property>
                   </Properties>

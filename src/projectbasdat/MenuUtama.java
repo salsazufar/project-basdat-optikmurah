@@ -27,16 +27,50 @@ public class MenuUtama extends javax.swing.JFrame {
     ResultSet rs;
     Statement st;
     Connection con;
-    final DefaultTableModel dtm;
+    final DefaultTableModel dtmTransaksi;
+    final DefaultTableModel dtmPelanggan;
+    final DefaultTableModel dtmLensa;
+    final DefaultTableModel dtmFrame;
+    final DefaultTableModel dtmDetail;
     public MenuUtama() {
         initComponents();
-        dtm = new DefaultTableModel();    
-        tabelTransaksi.setModel(dtm);        
-//        tabelTransaksi.setModel(dtm);
-////        dtm.addColumn("Nama Penyewa");
-////        dtm.addColumn("Nomor Telepon");
-////        dtm.addColumn("Alamat");
-////        update_table();
+        dtmTransaksi = new DefaultTableModel();
+        dtmPelanggan = new DefaultTableModel();
+        dtmLensa = new DefaultTableModel();
+        dtmFrame = new DefaultTableModel();
+        dtmDetail = new DefaultTableModel();
+        
+        tabelTransaksi.setModel(dtmTransaksi);  
+        dtmTransaksi.addColumn("Nomor Transaksi");
+        dtmTransaksi.addColumn("Tanggal Transaksi");
+        dtmTransaksi.addColumn("Nama Pelanggan");
+        dtmTransaksi.addColumn("Total Harga");
+        
+        tabelPelanggan.setModel(dtmPelanggan);
+        dtmPelanggan.addColumn("Nama Pelanggan");
+        dtmPelanggan.addColumn("Nomor Telepon");
+        
+        tabelLensa.setModel(dtmLensa);
+        dtmLensa.addColumn("ID Barang");
+        dtmLensa.addColumn("Nama Lensa");
+        dtmLensa.addColumn("Power");
+        dtmLensa.addColumn("Silinder");
+        dtmLensa.addColumn("Stok");
+        dtmLensa.addColumn("Harga Satuan");
+        
+        tabelFrame.setModel(dtmFrame);
+        dtmFrame.addColumn("ID Barang");
+        dtmFrame.addColumn("Merek Frame");
+        dtmFrame.addColumn("Harga");
+        
+        tabelDetail.setModel(dtmDetail);
+        dtmDetail.addColumn("Nomor Transaksi");
+        dtmDetail.addColumn("ID Lensa");
+        dtmDetail.addColumn("ID Frame");
+        dtmDetail.addColumn("Banyaknya");
+        dtmDetail.addColumn("Jumlah Harga");
+        
+        update_table();
     }
     
     /**
@@ -46,26 +80,145 @@ public class MenuUtama extends javax.swing.JFrame {
      */
     // Method untuk update Tabel
     private void update_table(){
-        dtm.getDataVector().removeAllElements();
-        dtm.fireTableDataChanged();
+        dtmTransaksi.getDataVector().removeAllElements();
+        dtmTransaksi.fireTableDataChanged();
+        
+        dtmPelanggan.getDataVector().removeAllElements();
+        dtmPelanggan.fireTableDataChanged();
+        
+        dtmFrame.getDataVector().removeAllElements();
+        dtmFrame.fireTableDataChanged();
+        
+        dtmLensa.getDataVector().removeAllElements();
+        dtmLensa.fireTableDataChanged();
+        
+        dtmDetail.getDataVector().removeAllElements();
+        dtmDetail.fireTableDataChanged();
+        
         try{
             con = BasisData.getKoneksi();
             try(Statement s = con.createStatement()){
-                String sql = "SELECT * FROM transaksi";
-                rs = s.executeQuery(sql);
+                String sqlTransaksi = "SELECT * FROM transaksi";
+                String sqlPelanggan = "SELECT * FROM pelanggan";
+                String sqlFrame = "SELECT * FROM data_frame";
+                String sqlLensa = "SELECT * FROM data_lensa";
+                String sqlDetail = "SELECT * FROM pesanan_detail";
+                rs = s.executeQuery(sqlTransaksi);
                 while(rs.next()){
                     Object[] x = new Object[4];
-                    x[0] = rs.getString("No Transaksi");
-                    x[1] = rs.getString("Tanggal Transaksi");
-                    x[2] = rs.getString("Nama Pelanggan");
-                    x[3] = rs.getString("Total Harga");
-                    dtm.addRow(x);
+                    x[0] = rs.getString("no_transaksi");
+                    x[1] = rs.getString("tanggal_transaksi");
+                    x[2] = rs.getString("nama");
+                    x[3] = rs.getString("total_harga");
+                    dtmTransaksi.addRow(x);
                 }
                 rs.close();
             }
+            
         }
         catch(Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Error");
+            JOptionPane.showMessageDialog(rootPane, "Error Update Table Transaksi");
+        }
+        
+        try{
+            con = BasisData.getKoneksi();
+            try(Statement s = con.createStatement()){
+                String sqlTransaksi = "SELECT * FROM transaksi";
+                String sqlPelanggan = "SELECT * FROM pelanggan";
+                String sqlFrame = "SELECT * FROM data_frame";
+                String sqlLensa = "SELECT * FROM data_lensa";
+                String sqlDetail = "SELECT * FROM pesanan_detail";
+                rs = s.executeQuery(sqlPelanggan);
+                while(rs.next()){
+                    Object[] x = new Object[2];
+                    x[0] = rs.getString("nama");
+                    x[1] = rs.getString("no_telpon");
+                    dtmPelanggan.addRow(x);
+                }
+                rs.close();
+            }
+            
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error Update Table Pelanggan");
+        }
+        
+        try{
+            con = BasisData.getKoneksi();
+            try(Statement s = con.createStatement()){
+                String sqlTransaksi = "SELECT * FROM transaksi";
+                String sqlPelanggan = "SELECT * FROM pelanggan";
+                String sqlFrame = "SELECT * FROM data_frame";
+                String sqlLensa = "SELECT * FROM data_lensa";
+                String sqlDetail = "SELECT * FROM pesanan_detail";
+                rs = s.executeQuery(sqlFrame);
+                while(rs.next()){
+                    Object[] x = new Object[4];
+                    x[0] = rs.getString("id_barang");
+                    x[1] = rs.getString("mere_frame");
+                    x[2] = rs.getString("harga_frame");
+                    x[3] = rs.getString("stok");
+                    dtmFrame.addRow(x);
+                }
+                rs.close();
+            }
+            
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error Update Table Frame");
+        }
+        
+        try{
+            con = BasisData.getKoneksi();
+            try(Statement s = con.createStatement()){
+                String sqlTransaksi = "SELECT * FROM transaksi";
+                String sqlPelanggan = "SELECT * FROM pelanggan";
+                String sqlFrame = "SELECT * FROM data_frame";
+                String sqlLensa = "SELECT * FROM data_lensa";
+                String sqlDetail = "SELECT * FROM pesanan_detail";
+                rs = s.executeQuery(sqlLensa);
+                while(rs.next()){
+                    Object[] x = new Object[6];
+                    x[0] = rs.getString("id_barang");
+                    x[1] = rs.getString("nama_lensa");
+                    x[2] = rs.getString("power");
+                    x[3] = rs.getString("silinder");
+                    x[4] = rs.getString("stok");
+                    x[5] = rs.getString("harga_satuan");
+                    dtmLensa.addRow(x);
+                }
+                rs.close();
+            }
+            
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error Update Table Lensa");
+        }
+        
+        try{
+            con = BasisData.getKoneksi();
+            try(Statement s = con.createStatement()){
+                String sqlTransaksi = "SELECT * FROM transaksi";
+                String sqlPelanggan = "SELECT * FROM pelanggan";
+                String sqlFrame = "SELECT * FROM data_frame";
+                String sqlLensa = "SELECT * FROM data_lensa";
+                String sqlDetail = "SELECT * FROM pesanan_detail";
+                rs = s.executeQuery(sqlDetail);
+                while(rs.next()){
+                    Object[] x = new Object[5];
+                    x[0] = rs.getString("no_transaksi");
+                    x[1] = rs.getString("id_lensa");
+                    x[2] = rs.getString("id_frame");
+                    x[3] = rs.getString("banyaknya");
+                    x[4] = rs.getString("jumlah_harga");
+                    dtmDetail.addRow(x);
+                }
+                rs.close();
+            }
+            
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error Update Table Detail");
         }
     }
     @SuppressWarnings("unchecked")
@@ -461,17 +614,17 @@ public class MenuUtama extends javax.swing.JFrame {
 
         tabelDetail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "NO.TRANSAKSI", "ID BARANG", "BANYAKNYA", "JUMLAH HARGA"
+                "NO.TRANSAKSI", "ID LENSA", "ID FRAME", "BANYAKNYA", "JUMLAH HARGA"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -659,17 +812,17 @@ public class MenuUtama extends javax.swing.JFrame {
 
         tabelFrame.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "MEREK", "HARGA"
+                "ID", "MEREK", "HARGA", "STOK"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -977,7 +1130,7 @@ public class MenuUtama extends javax.swing.JFrame {
         }    
         con = BasisData.getKoneksi();
         String sqlTransaksi = "INSERT INTO transaksi (no_transaksi, tanggal_transaksi, nama, total_harga) VALUES (?, ?, ?, ?)";
-        String sqlPelanggan = "INSERT INTO pelanggann (nama, no_telpon) VALUES (?, ?)";
+        String sqlPelanggan = "INSERT INTO pelanggan (nama, no_telpon) VALUES (?, ?)";
         String sqlDetailTransaksi = null;
         if(idBarang.charAt(0) == 'F'){
             sqlDetailTransaksi = "INSERT INTO pesanan_detail (no_transaksi, id_frame, banyaknya, jumlah_harga) VALUES (?, ?, ?, ?)";
@@ -1045,84 +1198,22 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void btnHpsTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHpsTransaksiActionPerformed
         // TODO add your handling code here:
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        String noTransaksi = tfNoTransaksi.getText();
-        String tgl = date.format(tfTglTransaksi.getDate());
-        String nama = tfNamaPlg.getText();
-        String telp = tfNoTelp.getText();
-        String idBarang = tfIdBrg.getText();
-        String banyaknya = tfBanyaknya.getText();
-        int banyak = Integer.parseInt(banyaknya);
+        String no_transaksi = tfNoTransaksi.getText();
 
-        if (nama.isEmpty() || telp.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Mohon lengkapi semua data", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            return;
-        }    
-        con = BasisData.getKoneksi();
-        String sqlTransaksi = "INSERT INTO transaksi (no_transaksi, tanggal_transaksi, nama, total_harga) VALUES (?, ?, ?, ?)";
-        String sqlPelanggan = "INSERT INTO pelanggann (nama, no_telpon) VALUES (?, ?)";
-        String sqlDetailTransaksi = null;
-        if(idBarang.charAt(0) == 'F'){
-            sqlDetailTransaksi = "INSERT INTO pesanan_detail (no_transaksi, id_frame, banyaknya, jumlah_harga) VALUES (?, ?, ?, ?)";
-        }
-        else if(idBarang.charAt(0) == 'L'){
-            sqlDetailTransaksi = "INSERT INTO pesanan_detail (no_transaksi, id_lensa, banyaknya, jumlah_harga) VALUES (?, ?, ?, ?)";
-        }
-        try{
-            // Operasi pertama   
-            String sqlSelectHarga = null;
-            int hargaSatuan = 0;
-            if(idBarang.charAt(0) == 'F'){
-                sqlSelectHarga = "SELECT harga_frame FROM data_frame WHERE id_barang = ?";
-                pst = con.prepareStatement(sqlSelectHarga);
-                pst.setString(1, idBarang);
-                ResultSet rs = pst.executeQuery();
-
-                // Mendapatkan harga_satuan dari hasil query SELECT              
-                if (rs.next()) {
-                    hargaSatuan = rs.getInt("harga_frame");
-                }
+        int selectedOption = JOptionPane.showConfirmDialog(null, "Hapus data dengan No Transaksi  : "+no_transaksi+"?","Konformasi", JOptionPane.INFORMATION_MESSAGE);
+        if(selectedOption == JOptionPane.YES_OPTION){
+            con = BasisData.getKoneksi();   
+            try{
+                String sql = "DELETE FROM transaksi WHERE no_transaksi=?";
+                pst = con.prepareStatement(sql);
+                pst.setString(1, no_transaksi);
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data berhasil dihapus", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+            } 
+            catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
             }
-            else if(idBarang.charAt(0) == 'L'){
-                sqlSelectHarga = "SELECT harga_satuan FROM data_lensa WHERE id_barang = ?";  
-                pst = con.prepareStatement(sqlSelectHarga);
-                pst.setString(1, idBarang);
-                ResultSet rs = pst.executeQuery();
-
-                // Mendapatkan harga_satuan dari hasil query SELECT                
-                if (rs.next()) {
-                    hargaSatuan = rs.getInt("harga_satuan");
-                }
-            }
-            pst = con.prepareStatement(sqlTransaksi);
-            pst.setString(1, noTransaksi);
-            pst.setString(2, tgl);
-            pst.setString(3, nama);
-            pst.setInt(4, banyak * hargaSatuan);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan pada tabel transaksi", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
-
-            // Operasi kedua
-            pst = con.prepareStatement(sqlPelanggan);
-            pst.setString(1, nama);
-            pst.setString(2, telp);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan pada tabel pelanggan", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
-
-            // Operasi ketiga                       
-            pst = con.prepareStatement(sqlDetailTransaksi);
-            pst.setString(1, noTransaksi);
-            pst.setString(2, idBarang);
-            pst.setInt(3, banyak);
-            pst.setInt(4, banyak * hargaSatuan);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan pada tabel detail", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
         }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e);
-            System.out.println("Error pada detail bang");
-        }
-//        clear();
         update_table();
     }//GEN-LAST:event_btnHpsTransaksiActionPerformed
 
