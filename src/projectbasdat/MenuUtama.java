@@ -30,12 +30,13 @@ public class MenuUtama extends javax.swing.JFrame {
     final DefaultTableModel dtm;
     public MenuUtama() {
         initComponents();
-        dtm = new DefaultTableModel();
-        tabelTransaksi.setModel(dtm);
-        dtm.addColumn("Nama Penyewa");
-        dtm.addColumn("Nomor Telepon");
-        dtm.addColumn("Alamat");
-        update_table();
+        dtm = new DefaultTableModel();    
+        tabelTransaksi.setModel(dtm);        
+//        tabelTransaksi.setModel(dtm);
+////        dtm.addColumn("Nama Penyewa");
+////        dtm.addColumn("Nomor Telepon");
+////        dtm.addColumn("Alamat");
+////        update_table();
     }
     
     /**
@@ -73,7 +74,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        JTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelTransaksi = new javax.swing.JTable();
@@ -149,9 +150,14 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("OPTIK MURAH");
 
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        JTabbedPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         tabelTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,6 +176,11 @@ public class MenuUtama extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tabelTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelTransaksiMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabelTransaksi);
@@ -202,7 +213,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addContainerGap(286, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Transaksi", jPanel1);
+        JTabbedPane1.addTab("Transaksi", jPanel1);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -255,7 +266,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addContainerGap(257, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Pelanggan", jPanel2);
+        JTabbedPane1.addTab("Pelanggan", jPanel2);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -437,7 +448,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Lensa", jPanel4);
+        JTabbedPane1.addTab("Lensa", jPanel4);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -490,7 +501,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addContainerGap(296, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Detail Transakasi", jPanel5);
+        JTabbedPane1.addTab("Detail Transakasi", jPanel5);
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel20.setText("NOMOR TRANSAKSI");
@@ -629,7 +640,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Input Transaksi", jPanel11);
+        JTabbedPane1.addTab("Input Transaksi", jPanel11);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("ID");
@@ -687,6 +698,11 @@ public class MenuUtama extends javax.swing.JFrame {
 
         btnHpsFrame.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnHpsFrame.setText("HAPUS");
+        btnHpsFrame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHpsFrameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -783,7 +799,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Frame", jPanel3);
+        JTabbedPane1.addTab("Frame", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -791,7 +807,7 @@ public class MenuUtama extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -804,7 +820,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1)
+                .addComponent(JTabbedPane1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -909,7 +925,23 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void btnHpsLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHpsLensaActionPerformed
         // TODO add your handling code here:
-  
+        String id_lensa = tfIdLensa.getText();
+
+        int selectedOption = JOptionPane.showConfirmDialog(null, "Hapus data dengan ID Lensa  : "+id_lensa+"?","Konformasi", JOptionPane.INFORMATION_MESSAGE);
+        if(selectedOption == JOptionPane.YES_OPTION){
+            con = BasisData.getKoneksi();
+            try{
+                String sql = "DELETE FROM data_lensa WHERE id_barang=?";
+                pst = con.prepareStatement(sql);
+                pst.setString(1, id_lensa);
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data berhasil dihapus", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+            } 
+            catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        //update_table();
     }//GEN-LAST:event_btnHpsLensaActionPerformed
 
     private void tfCariLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariLensaActionPerformed
@@ -1013,7 +1045,115 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void btnHpsTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHpsTransaksiActionPerformed
         // TODO add your handling code here:
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        String noTransaksi = tfNoTransaksi.getText();
+        String tgl = date.format(tfTglTransaksi.getDate());
+        String nama = tfNamaPlg.getText();
+        String telp = tfNoTelp.getText();
+        String idBarang = tfIdBrg.getText();
+        String banyaknya = tfBanyaknya.getText();
+        int banyak = Integer.parseInt(banyaknya);
+
+        if (nama.isEmpty() || telp.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Mohon lengkapi semua data", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }    
+        con = BasisData.getKoneksi();
+        String sqlTransaksi = "INSERT INTO transaksi (no_transaksi, tanggal_transaksi, nama, total_harga) VALUES (?, ?, ?, ?)";
+        String sqlPelanggan = "INSERT INTO pelanggann (nama, no_telpon) VALUES (?, ?)";
+        String sqlDetailTransaksi = null;
+        if(idBarang.charAt(0) == 'F'){
+            sqlDetailTransaksi = "INSERT INTO pesanan_detail (no_transaksi, id_frame, banyaknya, jumlah_harga) VALUES (?, ?, ?, ?)";
+        }
+        else if(idBarang.charAt(0) == 'L'){
+            sqlDetailTransaksi = "INSERT INTO pesanan_detail (no_transaksi, id_lensa, banyaknya, jumlah_harga) VALUES (?, ?, ?, ?)";
+        }
+        try{
+            // Operasi pertama   
+            String sqlSelectHarga = null;
+            int hargaSatuan = 0;
+            if(idBarang.charAt(0) == 'F'){
+                sqlSelectHarga = "SELECT harga_frame FROM data_frame WHERE id_barang = ?";
+                pst = con.prepareStatement(sqlSelectHarga);
+                pst.setString(1, idBarang);
+                ResultSet rs = pst.executeQuery();
+
+                // Mendapatkan harga_satuan dari hasil query SELECT              
+                if (rs.next()) {
+                    hargaSatuan = rs.getInt("harga_frame");
+                }
+            }
+            else if(idBarang.charAt(0) == 'L'){
+                sqlSelectHarga = "SELECT harga_satuan FROM data_lensa WHERE id_barang = ?";  
+                pst = con.prepareStatement(sqlSelectHarga);
+                pst.setString(1, idBarang);
+                ResultSet rs = pst.executeQuery();
+
+                // Mendapatkan harga_satuan dari hasil query SELECT                
+                if (rs.next()) {
+                    hargaSatuan = rs.getInt("harga_satuan");
+                }
+            }
+            pst = con.prepareStatement(sqlTransaksi);
+            pst.setString(1, noTransaksi);
+            pst.setString(2, tgl);
+            pst.setString(3, nama);
+            pst.setInt(4, banyak * hargaSatuan);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan pada tabel transaksi", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+
+            // Operasi kedua
+            pst = con.prepareStatement(sqlPelanggan);
+            pst.setString(1, nama);
+            pst.setString(2, telp);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan pada tabel pelanggan", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+
+            // Operasi ketiga                       
+            pst = con.prepareStatement(sqlDetailTransaksi);
+            pst.setString(1, noTransaksi);
+            pst.setString(2, idBarang);
+            pst.setInt(3, banyak);
+            pst.setInt(4, banyak * hargaSatuan);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan pada tabel detail", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+            System.out.println("Error pada detail bang");
+        }
+//        clear();
+        update_table();
     }//GEN-LAST:event_btnHpsTransaksiActionPerformed
+
+    private void tabelTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelTransaksiMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelTransaksiMouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void btnHpsFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHpsFrameActionPerformed
+        // TODO add your handling code here:
+        String id_frame = tfIdFrame.getText();
+
+        int selectedOption = JOptionPane.showConfirmDialog(null, "Hapus data dengan ID Frame  : "+id_frame+"?","Konformasi", JOptionPane.INFORMATION_MESSAGE);
+        if(selectedOption == JOptionPane.YES_OPTION){
+            con = BasisData.getKoneksi();
+            try{
+                String sql = "DELETE FROM data_frame WHERE id_barang=?";
+                pst = con.prepareStatement(sql);
+                pst.setString(1, id_frame);
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data berhasil dihapus", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+            } 
+            catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+        //update_table();
+    }//GEN-LAST:event_btnHpsFrameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1051,6 +1191,7 @@ public class MenuUtama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane JTabbedPane1;
     private javax.swing.JButton btnHpsFrame;
     private javax.swing.JButton btnHpsLensa;
     private javax.swing.JButton btnHpsTransaksi;
@@ -1092,7 +1233,6 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tabelDetail;
     private javax.swing.JTable tabelFrame;
     private javax.swing.JTable tabelLensa;
