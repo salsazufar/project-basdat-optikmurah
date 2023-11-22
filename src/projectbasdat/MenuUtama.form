@@ -287,10 +287,10 @@
                           <Component id="tfCariPelanggan" alignment="1" pref="785" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel28" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
-                                  <Component id="jLabel29" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <Component id="jLabel29" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <Component id="jLabel28" min="-2" pref="185" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="pelangganUbhNoTelp" max="32767" attributes="0"/>
                                   <Component id="pelangganUbhNama" max="32767" attributes="0"/>
@@ -366,7 +366,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="ID LENSA"/>
+                <Property name="text" type="java.lang.String" value="NAMA PELANGGAN"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="pelangganUbhNama">
@@ -376,7 +376,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="NAMA LENSA"/>
+                <Property name="text" type="java.lang.String" value="NOMOR TELEPON"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="pelangganUbhNoTelp">

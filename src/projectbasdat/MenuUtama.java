@@ -477,10 +477,10 @@ public class MenuUtama extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tabelPelanggan);
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel28.setText("ID LENSA");
+        jLabel28.setText("NAMA PELANGGAN");
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel29.setText("NAMA LENSA");
+        jLabel29.setText("NOMOR TELEPON");
 
         pelangganUbhNoTelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -507,9 +507,9 @@ public class MenuUtama extends javax.swing.JFrame {
                     .addComponent(tfCariPelanggan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(57, 57, 57)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pelangganUbhNoTelp)
                             .addComponent(pelangganUbhNama))))
@@ -1312,8 +1312,8 @@ public class MenuUtama extends javax.swing.JFrame {
             // TODO add your handling code here:
         String idBarang = tfIdFrame.getText();
         String merkFrame = tfMerekFrame.getText();
-        String hargaFrame = tfStokFrame.getText();
-        String stok = tfHargaFrame.getText();
+        String hargaFrame = tfHargaFrame.getText();
+        String stok = tfStokFrame.getText();
         int stokInt = Integer.parseInt(stok);
         int hargaSatuanInt = Integer.parseInt(hargaFrame);
 
