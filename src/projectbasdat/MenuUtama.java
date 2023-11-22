@@ -1454,7 +1454,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
-        //update_table();
+        update_table();
     }//GEN-LAST:event_btnHpsLensaActionPerformed
 
     private void tfCariLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariLensaActionPerformed
@@ -1621,7 +1621,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
-        //update_table();
+        update_table();
     }//GEN-LAST:event_btnHpsFrameActionPerformed
 
     private void tabelLensaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelLensaMouseClicked
