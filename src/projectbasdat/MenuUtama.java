@@ -1309,11 +1309,11 @@ public class MenuUtama extends javax.swing.JFrame {
     
     
     private void btnTbhFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTbhFrameActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
         String idBarang = tfIdFrame.getText();
         String merkFrame = tfMerekFrame.getText();
-        String stok = tfHargaFrame.getText();
         String hargaFrame = tfStokFrame.getText();
+        String stok = tfHargaFrame.getText();
         int stokInt = Integer.parseInt(stok);
         int hargaSatuanInt = Integer.parseInt(hargaFrame);
 
@@ -1391,6 +1391,8 @@ public class MenuUtama extends javax.swing.JFrame {
         }
         //clear();
         update_table();
+        tfIdFrame.setEditable(true);
+
     }//GEN-LAST:event_btnUbahFrameActionPerformed
 
     private void tfNamaLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNamaLensaActionPerformed
@@ -1455,6 +1457,8 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         }
         update_table();
+        tfIdLensa.setEditable(true);
+
     }//GEN-LAST:event_btnHpsLensaActionPerformed
 
     private void tfCariLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariLensaActionPerformed
@@ -1622,6 +1626,7 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         }
         update_table();
+        tfIdFrame.setEditable(true);
     }//GEN-LAST:event_btnHpsFrameActionPerformed
 
     private void tabelLensaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelLensaMouseClicked
@@ -1689,6 +1694,8 @@ public class MenuUtama extends javax.swing.JFrame {
         }
         //clear();
         update_table();
+        tfIdLensa.setEditable(true);
+
     }                                            
 
     private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {                                         
