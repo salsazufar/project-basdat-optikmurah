@@ -62,6 +62,7 @@ public class MenuUtama extends javax.swing.JFrame {
         dtmFrame.addColumn("ID Barang");
         dtmFrame.addColumn("Merek Frame");
         dtmFrame.addColumn("Harga");
+        dtmFrame.addColumn("Stok");
         
         tabelDetail.setModel(dtmDetail);
         dtmDetail.addColumn("Nomor Transaksi");
@@ -99,10 +100,6 @@ public class MenuUtama extends javax.swing.JFrame {
             con = BasisData.getKoneksi();
             try(Statement s = con.createStatement()){
                 String sqlTransaksi = "SELECT * FROM transaksi";
-                String sqlPelanggan = "SELECT * FROM pelanggan";
-                String sqlFrame = "SELECT * FROM data_frame";
-                String sqlLensa = "SELECT * FROM data_lensa";
-                String sqlDetail = "SELECT * FROM pesanan_detail";
                 rs = s.executeQuery(sqlTransaksi);
                 while(rs.next()){
                     Object[] x = new Object[4];
@@ -123,11 +120,7 @@ public class MenuUtama extends javax.swing.JFrame {
         try{
             con = BasisData.getKoneksi();
             try(Statement s = con.createStatement()){
-                String sqlTransaksi = "SELECT * FROM transaksi";
                 String sqlPelanggan = "SELECT * FROM pelanggan";
-                String sqlFrame = "SELECT * FROM data_frame";
-                String sqlLensa = "SELECT * FROM data_lensa";
-                String sqlDetail = "SELECT * FROM pesanan_detail";
                 rs = s.executeQuery(sqlPelanggan);
                 while(rs.next()){
                     Object[] x = new Object[2];
@@ -146,11 +139,7 @@ public class MenuUtama extends javax.swing.JFrame {
         try{
             con = BasisData.getKoneksi();
             try(Statement s = con.createStatement()){
-                String sqlTransaksi = "SELECT * FROM transaksi";
-                String sqlPelanggan = "SELECT * FROM pelanggan";
                 String sqlFrame = "SELECT * FROM data_frame";
-                String sqlLensa = "SELECT * FROM data_lensa";
-                String sqlDetail = "SELECT * FROM pesanan_detail";
                 rs = s.executeQuery(sqlFrame);
                 while(rs.next()){
                     Object[] x = new Object[4];
@@ -171,11 +160,7 @@ public class MenuUtama extends javax.swing.JFrame {
         try{
             con = BasisData.getKoneksi();
             try(Statement s = con.createStatement()){
-                String sqlTransaksi = "SELECT * FROM transaksi";
-                String sqlPelanggan = "SELECT * FROM pelanggan";
-                String sqlFrame = "SELECT * FROM data_frame";
                 String sqlLensa = "SELECT * FROM data_lensa";
-                String sqlDetail = "SELECT * FROM pesanan_detail";
                 rs = s.executeQuery(sqlLensa);
                 while(rs.next()){
                     Object[] x = new Object[6];
@@ -198,10 +183,6 @@ public class MenuUtama extends javax.swing.JFrame {
         try{
             con = BasisData.getKoneksi();
             try(Statement s = con.createStatement()){
-                String sqlTransaksi = "SELECT * FROM transaksi";
-                String sqlPelanggan = "SELECT * FROM pelanggan";
-                String sqlFrame = "SELECT * FROM data_frame";
-                String sqlLensa = "SELECT * FROM data_lensa";
                 String sqlDetail = "SELECT * FROM pesanan_detail";
                 rs = s.executeQuery(sqlDetail);
                 while(rs.next()){
@@ -290,9 +271,9 @@ public class MenuUtama extends javax.swing.JFrame {
         btnUbahFrame = new javax.swing.JButton();
         btnHpsFrame = new javax.swing.JButton();
         tfCariFrame = new javax.swing.JTextField();
-        tfHargaFrame = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
         tfStokFrame = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        tfHargaFrame = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -457,6 +438,11 @@ public class MenuUtama extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tabelLensa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelLensaMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tabelLensa);
 
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -471,6 +457,11 @@ public class MenuUtama extends javax.swing.JFrame {
 
         btnUbhLensa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnUbhLensa.setText("UBAH");
+        btnUbhLensa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbhLensaActionPerformed(evt);
+            }
+        });
 
         btnHpsLensa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnHpsLensa.setText("HAPUS");
@@ -802,7 +793,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel10.setText("MEREK");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel11.setText("HARGA");
+        jLabel11.setText("STOK");
 
         tfIdFrame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -827,6 +818,11 @@ public class MenuUtama extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tabelFrame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelFrameMouseClicked(evt);
             }
         });
         jScrollPane3.setViewportView(tabelFrame);
@@ -889,7 +885,7 @@ public class MenuUtama extends javax.swing.JFrame {
         });
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel14.setText("STOK");
+        jLabel14.setText("HARGA");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -919,8 +915,8 @@ public class MenuUtama extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(tfMerekFrame)
-                                        .addComponent(tfHargaFrame)
                                         .addComponent(tfStokFrame)
+                                        .addComponent(tfHargaFrame)
                                         .addComponent(tfIdFrame)))))))
                 .addGap(14, 14, 14))
         );
@@ -942,11 +938,11 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(tfStokFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfHargaFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(tfHargaFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                    .addComponent(tfStokFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
                 .addGap(56, 56, 56)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -982,22 +978,122 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void tfCariTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariTransaksiActionPerformed
         // TODO add your handling code here:
+        cariTransaksi();
     }//GEN-LAST:event_tfCariTransaksiActionPerformed
 
     private void tfCariPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariPelangganActionPerformed
         // TODO add your handling code here:
+        cariPelanggan();
     }//GEN-LAST:event_tfCariPelangganActionPerformed
 
     private void tfIdFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIdFrameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfIdFrameActionPerformed
-
+    
+    private void cariTransaksi(){
+        try{
+            st = BasisData.getKoneksi().createStatement();
+            rs = st.executeQuery("SELECT * FROM transaksi WHERE no_transaksi LIKE '%"+tfCariTransaksi.getText()+"%'");
+            dtmTransaksi.getDataVector().removeAllElements();
+            while(rs.next()){
+                Object[] x = new Object[4];
+                    x[0] = rs.getString("no_transaksi");
+                    x[1] = rs.getString("tanggal_transaksi");
+                    x[2] = rs.getString("nama");
+                    x[3] = rs.getString("total_harga");
+                    dtmTransaksi.addRow(x);
+            }
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "Terjadi error", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    private void cariPelanggan(){
+        try{
+            st = BasisData.getKoneksi().createStatement();
+            rs = st.executeQuery("SELECT * FROM pelanggan WHERE nama LIKE '%"+tfCariPelanggan.getText()+"%'");
+            dtmPelanggan.getDataVector().removeAllElements();
+            while(rs.next()){
+                Object[] x = new Object[2];
+                    x[0] = rs.getString("nama");
+                    x[1] = rs.getString("no_telpon");
+                    dtmPelanggan.addRow(x);
+            }
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "Terjadi error", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    private void cariLensa(){
+        try{
+            st = BasisData.getKoneksi().createStatement();
+            rs = st.executeQuery("SELECT * FROM data_lensa WHERE id_barang LIKE '%"+tfCariLensa.getText()+"%'");
+            dtmLensa.getDataVector().removeAllElements();
+            while(rs.next()){
+                Object[] x = new Object[6];
+                    x[0] = rs.getString("id_barang");
+                    x[1] = rs.getString("nama_lensa");
+                    x[2] = rs.getString("power");
+                    x[3] = rs.getString("silinder");
+                    x[4] = rs.getString("stok");
+                    x[5] = rs.getString("harga_satuan");
+                    dtmLensa.addRow(x);
+            }
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "Terjadi error", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    private void cariFrame(){
+        try{
+            st = BasisData.getKoneksi().createStatement();
+            rs = st.executeQuery("SELECT * FROM data_frame WHERE id_barang LIKE '%"+tfCariFrame.getText()+"%'");
+            dtmFrame.getDataVector().removeAllElements();
+            while(rs.next()){
+                Object[] x = new Object[4];
+                    x[0] = rs.getString("id_barang");
+                    x[1] = rs.getString("mere_frame");
+                    x[2] = rs.getString("harga_frame");
+                    x[3] = rs.getString("stok");
+                    dtmFrame.addRow(x);
+            }
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "Terjadi error", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    private void cariDetail(){
+        try{
+            st = BasisData.getKoneksi().createStatement();
+            rs = st.executeQuery("SELECT * FROM pesanan_detail WHERE no_transaksi LIKE '%"+tfCariDetail.getText()+"%'");
+            dtmDetail.getDataVector().removeAllElements();
+            while(rs.next()){
+                Object[] x = new Object[5];
+                    x[0] = rs.getString("no_transaksi");
+                    x[1] = rs.getString("id_lensa");
+                    x[2] = rs.getString("id_Frame");
+                    x[3] = rs.getString("banyaknya");
+                    x[4] = rs.getString("jumlah_harga");
+                    dtmDetail.addRow(x);
+            }
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "Terjadi error", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
+    
+    
     private void btnTbhFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTbhFrameActionPerformed
         // TODO add your handling code here:
         String idBarang = tfIdFrame.getText();
         String merkFrame = tfMerekFrame.getText();
-        String stok = tfStokFrame.getText();
-        String hargaFrame = tfHargaFrame.getText();
+        String stok = tfHargaFrame.getText();
+        String hargaFrame = tfStokFrame.getText();
         int stokInt = Integer.parseInt(stok);
         int hargaSatuanInt = Integer.parseInt(hargaFrame);
 
@@ -1027,10 +1123,54 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void tfCariFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariFrameActionPerformed
         // TODO add your handling code here:
+        cariFrame();
     }//GEN-LAST:event_tfCariFrameActionPerformed
 
     private void btnUbahFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahFrameActionPerformed
         // TODO add your handling code here:
+        String idBarang = tfIdFrame.getText();
+        String merkFrame = tfMerekFrame.getText();
+        String hargaFrame = tfHargaFrame.getText();
+        String stok = tfStokFrame.getText();
+        int stokInt = Integer.parseInt(stok);
+        int hargaSatuanInt = Integer.parseInt(hargaFrame);
+
+        if (idBarang.isEmpty() || merkFrame.isEmpty() || hargaFrame.isEmpty() || stok.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Mohon lengkapi semua data", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        con = BasisData.getKoneksi();
+        String sqlCekNama = "SELECT COUNT(*) FROM data_frame WHERE id_barang=?";
+        try {
+            pst = con.prepareStatement(sqlCekNama);
+            pst.setString(1, idBarang);
+            rs = pst.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            if (count == 0) {
+                JOptionPane.showMessageDialog(this, "ID Frame tidak ditemukan", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Eror cekNama");
+        }
+
+        String sql = "UPDATE data_frame SET  mere_frame=?, harga_frame=?, stok=? WHERE id_barang=?";
+        try{
+            pst = con.prepareStatement(sql);          
+            pst.setString(1, merkFrame);
+            pst.setInt(2, hargaSatuanInt);
+            pst.setInt(3, stokInt);  
+            pst.setString(4, idBarang);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data berhasil diedit", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        //clear();
+        update_table();
     }//GEN-LAST:event_btnUbahFrameActionPerformed
 
     private void tfNamaLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNamaLensaActionPerformed
@@ -1099,6 +1239,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void tfCariLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariLensaActionPerformed
         // TODO add your handling code here:
+        cariLensa();
     }//GEN-LAST:event_tfCariLensaActionPerformed
 
     private void tfPowerLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPowerLensaActionPerformed
@@ -1107,6 +1248,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void tfCariDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariDetailActionPerformed
         // TODO add your handling code here:
+        cariDetail();
     }//GEN-LAST:event_tfCariDetailActionPerformed
 
     private void tfNoTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNoTransaksiActionPerformed
@@ -1219,6 +1361,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void tabelTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelTransaksiMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_tabelTransaksiMouseClicked
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
@@ -1245,6 +1388,87 @@ public class MenuUtama extends javax.swing.JFrame {
         }
         //update_table();
     }//GEN-LAST:event_btnHpsFrameActionPerformed
+
+    private void tabelLensaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelLensaMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tabel = (DefaultTableModel) tabelLensa.getModel();
+        int selectedIndex = tabelLensa.getSelectedRow();
+        
+        tfIdLensa.setText(tabel.getValueAt(selectedIndex, 0).toString());
+        tfNamaLensa.setText(tabel.getValueAt(selectedIndex, 1).toString());
+        tfPowerLensa.setText(tabel.getValueAt(selectedIndex, 2).toString());
+        tfSilinderLensa.setText(tabel.getValueAt(selectedIndex, 3).toString());
+        tfStokLensa.setText(tabel.getValueAt(selectedIndex, 4).toString());
+        tfHargaSatuan.setText(tabel.getValueAt(selectedIndex, 5).toString());
+    }//GEN-LAST:event_tabelLensaMouseClicked
+
+    private void btnUbhLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbhLensaActionPerformed
+        // TODO add your handling code here:
+        String idBarang = tfIdLensa.getText();
+        String namaLensa = tfNamaLensa.getText();
+        String power = tfPowerLensa.getText();
+        String silinder = tfSilinderLensa.getText();
+        String stok = tfStokLensa.getText();
+        String hargaSatuan = tfHargaSatuan.getText();
+        double powerDesimal = Double.parseDouble(power);
+        double silinderDesimal = Double.parseDouble(silinder);
+        int stokInt = Integer.parseInt(stok);
+        int hargaSatuanInt = Integer.parseInt(hargaSatuan);
+
+        if (idBarang.isEmpty() || namaLensa.isEmpty() || power.isEmpty() || silinder.isEmpty() || stok.isEmpty() || hargaSatuan.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Mohon lengkapi semua data", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        con = BasisData.getKoneksi();
+        String sqlCekNama = "SELECT COUNT(*) FROM data_lensa WHERE id_barang=?";
+        try {
+            pst = con.prepareStatement(sqlCekNama);
+            pst.setString(1, idBarang);
+            rs = pst.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            if (count == 0) {
+                JOptionPane.showMessageDialog(this, "ID Lensa tidak ditemukan", "Peringatan", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Eror cekNama");
+        }
+
+        String sql = "UPDATE data_lensa SET  nama_lensa=?, power=?, silinder=?, stok=?, harga_satuan=? WHERE id_barang=?";
+        try{
+            pst = con.prepareStatement(sql);          
+            pst.setString(1, namaLensa);
+            pst.setDouble(2, powerDesimal);
+            pst.setDouble(3, silinderDesimal);
+            pst.setInt(4, stokInt);
+            pst.setInt(5, hargaSatuanInt);  
+            pst.setString(6, idBarang);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data berhasil diedit", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        //clear();
+        update_table();
+    }                                            
+
+    private void btn_EditActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        
+    }//GEN-LAST:event_btnUbhLensaActionPerformed
+
+    private void tabelFrameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelFrameMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tabel = (DefaultTableModel) tabelFrame.getModel();
+        int selectedIndex = tabelFrame.getSelectedRow();
+        
+        tfIdFrame.setText(tabel.getValueAt(selectedIndex, 0).toString());
+        tfMerekFrame.setText(tabel.getValueAt(selectedIndex, 1).toString());
+        tfHargaFrame.setText(tabel.getValueAt(selectedIndex, 2).toString());
+        tfStokFrame.setText(tabel.getValueAt(selectedIndex, 3).toString());
+    }//GEN-LAST:event_tabelFrameMouseClicked
 
     /**
      * @param args the command line arguments

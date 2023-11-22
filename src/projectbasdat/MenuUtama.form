@@ -389,6 +389,9 @@
                       </Table>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelLensaMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -448,6 +451,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="UBAH"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUbhLensaActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnHpsLensa">
                   <Properties>
@@ -853,8 +859,8 @@
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="tfMerekFrame" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="tfHargaFrame" alignment="0" max="32767" attributes="0"/>
                                               <Component id="tfStokFrame" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="tfHargaFrame" alignment="0" max="32767" attributes="0"/>
                                               <Component id="tfIdFrame" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -886,12 +892,12 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfStokFrame" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="tfHargaFrame" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfHargaFrame" alignment="3" pref="26" max="32767" attributes="0"/>
+                          <Component id="tfStokFrame" alignment="3" pref="26" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
@@ -922,7 +928,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="HARGA"/>
+                <Property name="text" type="java.lang.String" value="STOK"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tfIdFrame">
@@ -950,6 +956,9 @@
                       </Table>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelFrameMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1034,17 +1043,17 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCariFrameActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="tfHargaFrame">
+            <Component class="javax.swing.JTextField" name="tfStokFrame">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="STOK"/>
+                <Property name="text" type="java.lang.String" value="HARGA"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="tfStokFrame">
+            <Component class="javax.swing.JTextField" name="tfHargaFrame">
             </Component>
           </SubComponents>
         </Container>
