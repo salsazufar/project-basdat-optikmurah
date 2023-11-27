@@ -1507,20 +1507,39 @@ public class MenuUtama extends javax.swing.JFrame {
         try{
             // Operasi pertama   
             String sqlSelectHarga = null;
+            String update = null;
             int hargaSatuan = 0;
+            int stokSekarang = 0;
+            String queryStok = null;
+            int stokBaru = 0;
             if(idBarang.charAt(0) == 'F'){
                 sqlSelectHarga = "SELECT harga_frame FROM data_frame WHERE id_barang = ?";
+                update = "UPDATE data_frame SET stok=? WHERE id_barang=?";
+                queryStok = "SELECT stok FROM data_frame WHERE id_barang=?";
                 pst = con.prepareStatement(sqlSelectHarga);
                 pst.setString(1, idBarang);
                 ResultSet rs = pst.executeQuery();
-
+                
                 // Mendapatkan harga_satuan dari hasil query SELECT              
                 if (rs.next()) {
                     hargaSatuan = rs.getInt("harga_frame");
                 }
+                pst = con.prepareStatement(queryStok);
+                pst.setString(1, idBarang);
+                ResultSet rsStok = pst.executeQuery();
+                if(rsStok.next()){
+                    stokSekarang = rsStok.getInt("stok");
+                }
+                stokBaru = stokSekarang-banyak;
+                pst = con.prepareStatement(update);
+                pst.setInt(1, stokBaru);
+                pst.setString(2, idBarang);
+                pst.executeUpdate();
             }
             else if(idBarang.charAt(0) == 'L'){
                 sqlSelectHarga = "SELECT harga_satuan FROM data_lensa WHERE id_barang = ?";  
+                update = "UPDATE data_lensa SET stok=? WHERE id_barang=?";
+                queryStok = "SELECT stok FROM data_lensa WHERE id_barang=?";
                 pst = con.prepareStatement(sqlSelectHarga);
                 pst.setString(1, idBarang);
                 ResultSet rs = pst.executeQuery();
@@ -1529,6 +1548,19 @@ public class MenuUtama extends javax.swing.JFrame {
                 if (rs.next()) {
                     hargaSatuan = rs.getInt("harga_satuan");
                 }
+                
+                pst = con.prepareStatement(queryStok);
+                pst.setString(1, idBarang);
+                ResultSet rsStok = pst.executeQuery();
+                if(rsStok.next()){
+                    stokSekarang = rsStok.getInt("stok");
+                }
+                stokBaru = stokSekarang-banyak;
+                
+                pst = con.prepareStatement(update);
+                pst.setInt(1, stokBaru);
+                pst.setString(2, idBarang);
+                pst.executeUpdate();
             }
             pst = con.prepareStatement(sqlTransaksi);
             pst.setString(1, noTransaksi);
@@ -1553,6 +1585,10 @@ public class MenuUtama extends javax.swing.JFrame {
             pst.setInt(4, banyak * hargaSatuan);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan pada tabel detail", "Pemberitahuan", JOptionPane.INFORMATION_MESSAGE);
+            
+            //Melakukan update stok
+//            pst = con.prepareStatement(update);
+//            pst.setInt(1,banyak);
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
