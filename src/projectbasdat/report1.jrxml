@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="527cd3a4-fc53-489f-b62a-535f2c18c7bf">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+  CASE MONTH(tanggal_transaksi)
+    WHEN 1 THEN 'Januari'
+    WHEN 2 THEN 'Februari'
+    WHEN 3 THEN 'Maret'
+    WHEN 4 THEN 'April'
+    WHEN 5 THEN 'Mei'
+    WHEN 6 THEN 'Juni'
+    WHEN 7 THEN 'Juli'
+    WHEN 8 THEN 'Agustus'
+    WHEN 9 THEN 'September'
+    WHEN 10 THEN 'Oktober'
+    WHEN 11 THEN 'November'
+    WHEN 12 THEN 'Desember'
+  END AS bulan,
+  SUM(total_harga) AS total_pendapatan,
+  COUNT(no_transaksi) AS jumlah_pelanggan
+FROM transaksi
+GROUP BY MONTH(tanggal_transaksi)
+ORDER BY MONTH(tanggal_transaksi);]]>
+	</queryString>
+	<field name="bulan" class="java.lang.String"/>
+	<field name="total_pendapatan" class="java.lang.Integer"/>
+	<field name="jumlah_pelanggan" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="74" y="41" width="137" height="20" uuid="7ef1760c-7ac3-4038-9262-76678129c86f"/>
+				<box bottomPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[bulan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="41" width="137" height="20" uuid="5a0bcd4c-cb3b-4d57-a9bf-b4d1a8362b6b"/>
+				<box bottomPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[total_pendapatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="41" width="137" height="20" uuid="f6cad7d6-6821-46ba-a363-adb5dab6a737"/>
+				<box bottomPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[jumlah_pelanggan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="74" y="0" width="137" height="20" uuid="b97877be-a38c-4edb-b27d-f2e6cc48d1f6"/>
+				<box bottomPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{bulan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="0" width="137" height="20" uuid="0742c15c-60ab-4110-9b9e-3a95d5ea517b"/>
+				<box bottomPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total_pendapatan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="0" width="137" height="20" uuid="1f7a3bab-52c5-4da4-b5bb-123a0c634287"/>
+				<box bottomPadding="0">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jumlah_pelanggan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
