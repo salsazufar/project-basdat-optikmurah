@@ -321,9 +321,8 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         tfBanyaknya = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        tfCariDetail1 = new javax.swing.JTextField();
-        detailBtnUbah1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        optionLaporan = new javax.swing.JComboBox<>();
 
         jButton1.setText("jButton1");
 
@@ -1235,33 +1234,17 @@ public class MenuUtama extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 146, 9));
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tfCariDetail1.setForeground(new java.awt.Color(245, 247, 248));
-        tfCariDetail1.setText("Masukkan No.Transaksi");
-        tfCariDetail1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfCariDetail1ActionPerformed(evt);
-            }
-        });
-
-        detailBtnUbah1.setBackground(new java.awt.Color(43, 52, 153));
-        detailBtnUbah1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        detailBtnUbah1.setForeground(new java.awt.Color(245, 247, 248));
-        detailBtnUbah1.setText("UBAH");
-        detailBtnUbah1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                detailBtnUbah1MouseClicked(evt);
-            }
-        });
-        detailBtnUbah1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                detailBtnUbah1ActionPerformed(evt);
-            }
-        });
-
         jButton2.setText("Cetak");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        optionLaporan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laporan Pendapatan", "Laporan Penjualan Frame", "Laporan Penjualan Lensa" }));
+        optionLaporan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionLaporanActionPerformed(evt);
             }
         });
 
@@ -1270,26 +1253,20 @@ public class MenuUtama extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfCariDetail1, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(detailBtnUbah1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(102, Short.MAX_VALUE))
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(388, 388, 388)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(152, 152, 152)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(optionLaporan, 0, 653, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(tfCariDetail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(47, 47, 47)
+                .addComponent(optionLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 513, Short.MAX_VALUE)
-                .addComponent(detailBtnUbah1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addContainerGap(601, Short.MAX_VALUE))
         );
 
         JTabbedPane1.addTab("Laporan", jPanel7);
@@ -2055,31 +2032,39 @@ public class MenuUtama extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_detailUbhJmlActionPerformed
 
-    private void tfCariDetail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariDetail1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfCariDetail1ActionPerformed
-
-    private void detailBtnUbah1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailBtnUbah1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_detailBtnUbah1MouseClicked
-
-    private void detailBtnUbah1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailBtnUbah1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_detailBtnUbah1ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try{
             con = BasisData.getKoneksi();
-            String report = "C:\\Users\\User\\JaspersoftWorkspace\\MyReports\\pendaptan.jrxml";
-            JasperReport jr = JasperCompileManager.compileReport(report);
-            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
-            JasperViewer.viewReport(jp);
+            String selectedValue = (String) optionLaporan.getSelectedItem();
+            if(selectedValue.equals("Laporan Pendapatan")){
+                String report = "C:\\Users\\User\\JaspersoftWorkspace\\MyReports\\pendaptan.jrxml";
+                JasperReport jr = JasperCompileManager.compileReport(report);
+                JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+                JasperViewer.viewReport(jp);
+//                JasperExportManager.exportReportToPdfFile(jp, selectedValue);
+            }
+            else if(selectedValue.equals("Laporan Penjualan Frame")){
+                String report = "C:\\Users\\User\\JaspersoftWorkspace\\MyReports\\laporanFrame.jrxml";
+                JasperReport jr = JasperCompileManager.compileReport(report);
+                JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+                JasperViewer.viewReport(jp);
+            }
+            else if(selectedValue.equals("Laporan Penjualan Lensa")){
+                String report = "C:\\Users\\User\\JaspersoftWorkspace\\MyReports\\laporan_lensa.jrxml";
+                JasperReport jr = JasperCompileManager.compileReport(report);
+                JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+                JasperViewer.viewReport(jp);
+            }
         } catch (JRException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(rootPane, e);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void optionLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionLaporanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optionLaporanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2127,7 +2112,6 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JButton btnUbahFrame;
     private javax.swing.JButton btnUbhLensa;
     private javax.swing.JButton detailBtnUbah;
-    private javax.swing.JButton detailBtnUbah1;
     private javax.swing.JTextField detailUbhBanyak;
     private javax.swing.JTextField detailUbhFrame;
     private javax.swing.JTextField detailUbhJml;
@@ -2179,6 +2163,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JComboBox<String> optionLaporan;
     private javax.swing.JButton pelangganBtnUbh;
     private javax.swing.JTextField pelangganUbhNama;
     private javax.swing.JTextField pelangganUbhNoTelp;
@@ -2189,7 +2174,6 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JTable tabelTransaksi;
     private javax.swing.JTextField tfBanyaknya;
     private javax.swing.JTextField tfCariDetail;
-    private javax.swing.JTextField tfCariDetail1;
     private javax.swing.JTextField tfCariFrame;
     private javax.swing.JTextField tfCariLensa;
     private javax.swing.JTextField tfCariPelanggan;
