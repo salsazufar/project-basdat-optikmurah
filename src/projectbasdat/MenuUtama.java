@@ -1429,6 +1429,12 @@ public class MenuUtama extends javax.swing.JFrame {
     }
     
     
+    private void clearFrame() {
+        tfIdFrame.setText("");
+        tfMerekFrame.setText("");
+        tfHargaFrame.setText("");
+        tfStokFrame.setText("");
+    }
     
     private void btnTbhFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTbhFrameActionPerformed
             // TODO add your handling code here:
@@ -1459,7 +1465,7 @@ public class MenuUtama extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
             System.out.println("Error pada frame bang");
         }
-//        clear();
+        clearFrame();
         update_table();
     }//GEN-LAST:event_btnTbhFrameActionPerformed
 
@@ -1511,7 +1517,7 @@ public class MenuUtama extends javax.swing.JFrame {
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        //clear();
+        clearFrame();
         update_table();
         tfIdFrame.setEditable(true);
 
@@ -1520,7 +1526,15 @@ public class MenuUtama extends javax.swing.JFrame {
     private void tfNamaLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNamaLensaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNamaLensaActionPerformed
-
+    private void clearLensa() {
+        tfIdLensa.setText("");
+        tfNamaLensa.setText("");
+        tfPowerLensa.setText("");
+        tfSilinderLensa.setText("");
+        tfStokLensa.setText("");
+        tfHargaSatuan.setText("");
+    }
+    
     private void btnTbhLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTbhLensaActionPerformed
         // TODO add your handling code here:
         String idBarang = tfIdLensa.getText();
@@ -1556,10 +1570,10 @@ public class MenuUtama extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
             System.out.println("Error pada lensa bang");
         }
-//        clear();
+        clearLensa();
         update_table();
     }//GEN-LAST:event_btnTbhLensaActionPerformed
-
+    
     private void btnHpsLensaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHpsLensaActionPerformed
         // TODO add your handling code here:
         String id_lensa = tfIdLensa.getText();
@@ -1579,6 +1593,7 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         }
         update_table();
+        clearLensa();
         tfIdLensa.setEditable(true);
 
     }//GEN-LAST:event_btnHpsLensaActionPerformed
@@ -1600,7 +1615,15 @@ public class MenuUtama extends javax.swing.JFrame {
     private void tfNoTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNoTransaksiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNoTransaksiActionPerformed
-
+    
+    private void clearTransaksi() {
+        tfNoTransaksi.setText("");
+        tfTglTransaksi.setDate(null);
+        tfNamaPlg.setText("");
+        tfNoTelp.setText("");
+        tfIdBrg.setText("");
+        tfBanyaknya.setText("");
+    }
     private void btnTbhTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTbhTransaksiActionPerformed
         // TODO add your handling code here:
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -1716,7 +1739,7 @@ public class MenuUtama extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
             System.out.println("Error pada detail bang");
         }
-//        clear();
+        clearTransaksi();
         update_table();
     }//GEN-LAST:event_btnTbhTransaksiActionPerformed
 
@@ -1739,8 +1762,9 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         }
         update_table();
+        clearTransaksi();
     }//GEN-LAST:event_btnHpsTransaksiActionPerformed
-
+    
     private void tabelTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelTransaksiMouseClicked
         // TODO add your handling code here:
         DefaultTableModel tabel = (DefaultTableModel) tabelTransaksi.getModel();
@@ -1758,7 +1782,7 @@ public class MenuUtama extends javax.swing.JFrame {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        
+       
     }//GEN-LAST:event_tabelTransaksiMouseClicked
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
@@ -1784,6 +1808,7 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         }
         update_table();
+        clearFrame();
         tfIdFrame.setEditable(true);
     }//GEN-LAST:event_btnHpsFrameActionPerformed
 
@@ -1850,7 +1875,7 @@ public class MenuUtama extends javax.swing.JFrame {
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        //clear();
+        clearLensa();
         update_table();
         tfIdLensa.setEditable(true);
 
@@ -1875,7 +1900,15 @@ public class MenuUtama extends javax.swing.JFrame {
     private void transaksiUbhNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiUbhNamaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_transaksiUbhNamaActionPerformed
-
+    
+    private void clearUbhTransaksi() {
+        transaksiUbhNo.setText("");
+        transaksiUbhTanggal.setDate(null);
+        transaksiUbhNama.setText("");
+        transaksiUbhTotalHarga.setText("");
+        transaksiUbhNo.setText("");
+    }
+      
     private void transaksiBtnUbhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiBtnUbhActionPerformed
         // TODO add your handling code here:
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -1903,6 +1936,7 @@ public class MenuUtama extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
         update_table();
+        clearUbhTransaksi();
     }//GEN-LAST:event_transaksiBtnUbhActionPerformed
 
     private void tabelPelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelPelangganMouseClicked
@@ -1918,7 +1952,12 @@ public class MenuUtama extends javax.swing.JFrame {
     private void pelangganUbhNoTelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pelangganUbhNoTelpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pelangganUbhNoTelpActionPerformed
-
+    
+    private void clearPelanggan() {
+        pelangganUbhNama.setText("");
+        pelangganUbhNoTelp.setText("");
+    }
+    
     private void pelangganBtnUbhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pelangganBtnUbhActionPerformed
         // TODO add your handling code here:
         String namaPelanggan = pelangganUbhNama.getText();
@@ -1955,7 +1994,7 @@ public class MenuUtama extends javax.swing.JFrame {
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        //clear();
+        clearPelanggan();
         update_table();
     }//GEN-LAST:event_pelangganBtnUbhActionPerformed
 
@@ -1982,7 +2021,15 @@ public class MenuUtama extends javax.swing.JFrame {
     private void detailBtnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailBtnUbahActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_detailBtnUbahActionPerformed
-
+    
+    private void clearDetail() {
+        detailUbhNoTrans.setText("");
+        detailUbhLensa.setText("");
+        detailUbhFrame.setText("");
+        detailUbhBanyak.setText("");
+        detailUbhJml.setText("");
+    }
+    
     private void detailBtnUbahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_detailBtnUbahMouseClicked
         // TODO add your handling code here:
         String noTransaksi = detailUbhNoTrans.getText();
@@ -2026,7 +2073,7 @@ public class MenuUtama extends javax.swing.JFrame {
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        //clear();
+        clearDetail();
         update_table();
     }//GEN-LAST:event_detailBtnUbahMouseClicked
 
